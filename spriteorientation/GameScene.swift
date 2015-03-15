@@ -26,8 +26,18 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
+        // Capture the touch event
+        let touch = touches.anyObject() as UITouch
+        
+        // Get the position that was touched
+        let touchPosition = touch.locationInNode(self)
+        
+        // Define action for the ship to take
+        let moveAction = SKAction.moveTo(touchPosition, duration: 0.5)
         
         
+        // Tell the ship to execute actions
+        sprite!.runAction(moveAction)
     }
    
     override func update(currentTime: CFTimeInterval) {
