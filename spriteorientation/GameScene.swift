@@ -32,12 +32,19 @@ class GameScene: SKScene {
         // Get the position that was touched
         let touchPosition = touch.locationInNode(self)
         
+        // Get sprite's current position (a.k.a starting point)
+        let currentPosition = sprite!.position
+        
+        // Calculate the angle using the relative positions of the sprite and touch
+        let angle = atan2(currentPosition.y - touchPosition.y, currentPosition.x - touchPosition.x);
+        
         // Define action for the ship to take
+        let rotateAction = SKAction.rotateByAngle(angle, duration: 0.0)
         let moveAction = SKAction.moveTo(touchPosition, duration: 0.5)
         
         
         // Tell the ship to execute actions
-        sprite!.runAction(moveAction)
+        sprite!.runAction(SKAction.sequence([rotateAction, moveAction]))
     }
    
     override func update(currentTime: CFTimeInterval) {
