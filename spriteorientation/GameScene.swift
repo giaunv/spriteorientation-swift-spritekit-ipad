@@ -39,9 +39,8 @@ class GameScene: SKScene {
         let angle = atan2(currentPosition.y - touchPosition.y, currentPosition.x - touchPosition.x);
         
         // Define action for the ship to take
-        let rotateAction = SKAction.rotateByAngle(angle, duration: 0.0)
+        let rotateAction = SKAction.rotateToAngle(angle + CGFloat(M_PI*0.5), duration: 0.0)
         let moveAction = SKAction.moveTo(touchPosition, duration: 0.5)
-        
         
         // Tell the ship to execute actions
         sprite!.runAction(SKAction.sequence([rotateAction, moveAction]))
